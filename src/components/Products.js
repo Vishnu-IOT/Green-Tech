@@ -1,25 +1,29 @@
-import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Product.css";
-import napkin from "../assests/13.jpeg";
-import incinerator from "../assests/2.png";
-import vending from "../assests/3.png";
-import baler from "../assests/4.png";
-import lpgg from "../assests/132.jpeg";
-import blow from "../assests/woodblower.jpg";
-import mobilee from "../assests/135.jpeg";
-import one from "../assests/1.jpeg";
-import two from "../assests/2.jpeg";
-import three from "../assests/3.jpeg";
-import four from "../assests/4.jpeg";
-import five from "../assests/great.jpeg";
-import six from "../assests/6.jpeg";
-import seven from "../assests/7.jpeg";
-import eight from "../assests/great.jpeg";
-import nine from "../assests/9.jpeg";
-import ten from "../assests/10.jpeg";
-import el from "../assests/great1.jpeg";
-import twel from "../assests/12.jpeg";
+import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Product.css';
+import napkin from '../assests/13.jpeg';
+import incinerator from '../assests/2.png';
+import vending from '../assests/3.png';
+import baler from '../assests/4.png';
+import lpgg from '../assests/132.jpeg';
+import blow from '../assests/woodblower.jpg';
+import mobilee from '../assests/135.jpeg';
+import napkine from '../assests/131.jpeg';
+import creme from '../assests/133.jpeg';
+import one from '../assests/1.jpeg';
+import one2 from '../assests/1.png';
+import two from '../assests/2.jpeg';
+// import three from '../assests/3.jpeg';
+import four from '../assests/4.jpeg';
+import five from '../assests/great.jpeg';
+import six from '../assests/6.jpeg';
+// import seven from '../assests/7.jpeg';
+import eight from '../assests/great1.jpeg';
+import nine from '../assests/9.jpeg';
+// import ten from '../assests/10.jpeg';
+// import el from '../assests/great1.jpeg';
+import eleven from '../assests/11.jpeg';
+// import twel from '../assests/12.jpeg';
 
 /* ─── useInView ─── */
 function useInView(threshold = 0.12) {
@@ -27,7 +31,9 @@ function useInView(threshold = 0.12) {
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setInView(true); },
+      ([e]) => {
+        if (e.isIntersecting) setInView(true);
+      },
       { threshold }
     );
     if (ref.current) obs.observe(ref.current);
@@ -40,22 +46,22 @@ function useInView(threshold = 0.12) {
 function HeroCarousel() {
   const carouselImages = [
     one,
-    two,
-    three,
-    four,
-    five,
-    six,
-    seven,
-    eight,
-    nine,
-    ten,
-    el,
-    twel,
-    napkin,
+    one2,
     incinerator,
-    vending,
     baler,
+    two,
+    four,
+    six,
+    five,
+    nine,
+    eleven,
+    eight,
     blow,
+    vending,
+    napkin,
+    napkine,
+    lpgg,
+    creme,
     mobilee,
   ];
 
@@ -95,7 +101,9 @@ function HeroCarousel() {
   return (
     <div className="pr-hero-carousel">
       <div className="pr-carousel-container">
-        <div className={`pr-carousel-slide ${isTransitioning ? 'pr-transitioning' : ''}`}>
+        <div
+          className={`pr-carousel-slide ${isTransitioning ? 'pr-transitioning' : ''}`}
+        >
           <img
             src={carouselImages[currentIndex]}
             alt={`Product ${currentIndex + 1}`}
@@ -104,10 +112,16 @@ function HeroCarousel() {
         </div>
 
         {/* Navigation Arrows */}
-        <button className="pr-carousel-nav pr-carousel-prev" onClick={prevImage}>
+        <button
+          className="pr-carousel-nav pr-carousel-prev"
+          onClick={prevImage}
+        >
           ‹
         </button>
-        <button className="pr-carousel-nav pr-carousel-next" onClick={nextImage}>
+        <button
+          className="pr-carousel-nav pr-carousel-next"
+          onClick={nextImage}
+        >
           ›
         </button>
 
@@ -145,7 +159,7 @@ function ProductCard({ item, index, onDetails, onEnquire }) {
   return (
     <div
       ref={ref}
-      className={`pr-card${inView ? " pr-in" : ""}`}
+      className={`pr-card${inView ? ' pr-in' : ''}`}
       style={{ transitionDelay: `${index * 0.08}s` }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -155,9 +169,11 @@ function ProductCard({ item, index, onDetails, onEnquire }) {
         <img src={item.img} alt={item.title} />
         <div className="pr-card-overlay" />
         {/* index badge */}
-        <span className="pr-card-num">{String(index + 1).padStart(2, "0")}</span>
+        <span className="pr-card-num">
+          {String(index + 1).padStart(2, '0')}
+        </span>
         {/* hover CTA on image */}
-        <div className={`pr-card-img-cta${hovered ? " pr-visible" : ""}`}>
+        <div className={`pr-card-img-cta${hovered ? ' pr-visible' : ''}`}>
           <button onClick={onEnquire}>Enquire Now</button>
         </div>
       </div>
@@ -168,7 +184,9 @@ function ProductCard({ item, index, onDetails, onEnquire }) {
         <p className="pr-card-desc">{item.desc}</p>
         <div className="pr-card-tags">
           {item.tags.map((t, i) => (
-            <span key={i} className="pr-tag">{t}</span>
+            <span key={i} className="pr-tag">
+              {t}
+            </span>
           ))}
         </div>
         <div className="pr-card-footer">
@@ -187,67 +205,67 @@ function ProductCard({ item, index, onDetails, onEnquire }) {
 /* ─── Main ─── */
 export default function Products() {
   const navigate = useNavigate();
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState('All');
 
   const products = [
     {
-      id: "napkin-destroyer",
+      id: 'napkin-destroyer',
       img: napkin,
-      title: "Napkin Destroyer",
-      category: "Hygiene",
-      tags: ["Hygienic", "Eco-Safe", "Institutional"],
-      desc: "Patented hygienic disposal for sanitary napkins — ideal for schools, offices, hospitals and public facilities. Reduces bio-hazard waste safely.",
+      title: 'Napkin Destroyer',
+      category: 'Hygiene',
+      tags: ['Hygienic', 'Eco-Safe', 'Institutional'],
+      desc: 'Patented hygienic disposal for sanitary napkins — ideal for schools, offices, hospitals and public facilities. Reduces bio-hazard waste safely.',
     },
     {
-      id: "blower",
+      id: 'blower',
       img: five,
-      title: "Wood Stove Blower",
-      category: "Waste-to-Energy",
-      tags: ["Hygienic", "Eco-Safe", "Institutional"],
-      desc: "Patented hygienic disposal for sanitary napkins — ideal for schools, offices, hospitals and public facilities. Reduces bio-hazard waste safely.",
+      title: 'Wood Stove Blower',
+      category: 'Waste-to-Energy',
+      tags: ['Hygienic', 'Eco-Safe', 'Institutional'],
+      desc: 'Patented hygienic disposal for sanitary napkins — ideal for schools, offices, hospitals and public facilities. Reduces bio-hazard waste safely.',
     },
     {
-      id: "incinerator",
+      id: 'incinerator',
       img: incinerator,
-      title: "Eco-Friendly Incinerator",
-      category: "Waste-to-Energy",
-      tags: ["Zero-Fuel", "PCB Approved", "Medical Waste"],
-      desc: "Patented zero-fuel incineration reducing waste mass by 80–85% and volume by 95–96%. By-product ash usable as fertiliser or lightweight bricks.",
+      title: 'Eco-Friendly Incinerator',
+      category: 'Waste-to-Energy',
+      tags: ['Zero-Fuel', 'PCB Approved', 'Medical Waste'],
+      desc: 'Patented zero-fuel incineration reducing waste mass by 80–85% and volume by 95–96%. By-product ash usable as fertiliser or lightweight bricks.',
     },
     {
-      id: "lpg",
+      id: 'lpg',
       img: lpgg,
-      title: "LPG Crematorium",
-      category: "Waste Management",
-      tags: ["LPG Powered", "Hygienic", "SmokeFree"],
-      desc: "LPG Crematorium is an eco-friendly system for clean and hygienic cremation using LPG fuel.It ensures low emissions, smoke-free operation, and fast, safe performance.",
+      title: 'LPG Crematorium',
+      category: 'Waste Management',
+      tags: ['LPG Powered', 'Hygienic', 'SmokeFree'],
+      desc: 'LPG Crematorium is an eco-friendly system for clean and hygienic cremation using LPG fuel.It ensures low emissions, smoke-free operation, and fast, safe performance.',
     },
     {
-      id: "mobile-crematorium",
+      id: 'mobile-crematorium',
       img: mobilee,
-      title: "Mobile Crematorium",
-      category: "Hygiene",
-      tags: ["Transportable", "Efficient", "Portable"],
-      desc: "Mobile Crematorium is a portable and eco-friendly cremation system designed for quick, hygienic, and on-site cremation in emergency or remote locations.",
+      title: 'Mobile Crematorium',
+      category: 'Hygiene',
+      tags: ['Transportable', 'Efficient', 'Portable'],
+      desc: 'Mobile Crematorium is a portable and eco-friendly cremation system designed for quick, hygienic, and on-site cremation in emergency or remote locations.',
     },
     {
-      id: "dosa-tawa",
+      id: 'dosa-tawa',
       img: two,
-      title: "DOSA TAWA",
-      category: "Kitchen Equipment",
-      tags: ["Durable", "Even Heating", "Non-Stick"],
-      desc: "Dosa Tawa is a high-quality flat cooking pan specially designed for making crispy dosas, uttapams, and other South Indian dishes.",
-    }
+      title: 'DOSA TAWA',
+      category: 'Kitchen Equipment',
+      tags: ['Durable', 'Even Heating', 'Non-Stick'],
+      desc: 'Dosa Tawa is a high-quality flat cooking pan specially designed for making crispy dosas, uttapams, and other South Indian dishes.',
+    },
   ];
 
-  const filters = ["All", ...new Set(products.map(p => p.category))];
-  const filtered = activeFilter === "All"
-    ? products
-    : products.filter(p => p.category === activeFilter);
+  const filters = ['All', ...new Set(products.map((p) => p.category))];
+  const filtered =
+    activeFilter === 'All'
+      ? products
+      : products.filter((p) => p.category === activeFilter);
 
   return (
     <div className="pr-page">
-
       {/* ══ HERO ══ */}
       <section className="pr-hero">
         <div className="pr-hero-overlay" />
@@ -261,15 +279,16 @@ export default function Products() {
               Our <em>Products</em>
             </h1>
             <p className="pr-hero-sub">
-              Precision-built, government-approved eco-machinery for solid waste management,
-              hygiene, and recycling — designed for institutions, industries and municipalities across India.
+              Precision-built, government-approved eco-machinery for solid waste
+              management, hygiene, and recycling — designed for institutions,
+              industries and municipalities across India.
             </p>
             <div className="pr-hero-stats">
               {[
-                { n: "6", l: "Product Lines" },
-                { n: "300+", l: "Installations" },
-                { n: "PCB", l: "Approved" },
-                { n: "1yr", l: "Warranty" },
+                { n: '6', l: 'Product Lines' },
+                { n: '300+', l: 'Installations' },
+                { n: 'PCB', l: 'Approved' },
+                { n: '1yr', l: 'Warranty' },
               ].map((s, i) => (
                 <div key={i} className="pr-hero-stat">
                   <span className="pr-hero-stat-n">{s.n}</span>
@@ -290,25 +309,27 @@ export default function Products() {
 
       {/* ══ CATALOG ══ */}
       <section className="pr-catalog">
-
         {/* Header */}
         <div className="pr-catalog-head">
-          <p className="pr-eyebrow" style={{ textAlign: "center" }}>Product Catalog</p>
-          <h2 className="pr-h2" style={{ textAlign: "center" }}>
+          <p className="pr-eyebrow" style={{ textAlign: 'center' }}>
+            Product Catalog
+          </p>
+          <h2 className="pr-h2" style={{ textAlign: 'center' }}>
             Complete Eco-Machinery <em>Range</em>
           </h2>
           <p className="pr-catalog-sub">
-            All products are designed for durability, ease of use and maximum eco-efficiency.
-            Suitable for schools, hospitals, institutions and government facilities.
+            All products are designed for durability, ease of use and maximum
+            eco-efficiency. Suitable for schools, hospitals, institutions and
+            government facilities.
           </p>
         </div>
 
         {/* Filters */}
         <div className="pr-filters">
-          {filters.map(f => (
+          {filters.map((f) => (
             <button
               key={f}
-              className={`pr-filter-btn${activeFilter === f ? " pr-filter-active" : ""}`}
+              className={`pr-filter-btn${activeFilter === f ? ' pr-filter-active' : ''}`}
               onClick={() => setActiveFilter(f)}
             >
               {f}
@@ -324,7 +345,7 @@ export default function Products() {
               item={item}
               index={i}
               onDetails={() => navigate(`/products/${item.id}`)}
-              onEnquire={() => navigate("/getquote")}
+              onEnquire={() => navigate('/getquote')}
             />
           ))}
         </div>
@@ -333,10 +354,26 @@ export default function Products() {
       {/* ══ TRUST STRIP ══ */}
       <section className="pr-trust">
         {[
-          { icon: "🏛️", title: "Govt. Empanelled", body: "Officially empanelled with & Kerala Agro Industries." },
-          { icon: "♻️", title: "Eco-Certified", body: "All machinery compliant with PCB environmental norms." },
-          { icon: "🔧", title: "1-Year Warranty", body: "Onsite replacement warranty on every product." },
-          { icon: "🚛", title: "Pan-India Delivery", body: "Own trucks — no third-party logistics, no delays." },
+          {
+            icon: '🏛️',
+            title: 'Govt. Empanelled',
+            body: 'Officially empanelled with & Kerala Agro Industries.',
+          },
+          {
+            icon: '♻️',
+            title: 'Eco-Certified',
+            body: 'All machinery compliant with PCB environmental norms.',
+          },
+          {
+            icon: '🔧',
+            title: '1-Year Warranty',
+            body: 'Onsite replacement warranty on every product.',
+          },
+          {
+            icon: '🚛',
+            title: 'Pan-India Delivery',
+            body: 'Own trucks — no third-party logistics, no delays.',
+          },
         ].map((t, i) => (
           <div key={i} className="pr-trust-card">
             <span className="pr-trust-icon">{t.icon}</span>
@@ -353,25 +390,32 @@ export default function Products() {
         <div className="pr-cta-orb pr-cta-orb1" />
         <div className="pr-cta-orb pr-cta-orb2" />
         <div className="pr-cta-inner">
-          <p className="pr-eyebrow light" style={{ textAlign: "center" }}>Ready to Order?</p>
-          <h2 className="pr-h2 light" style={{ textAlign: "center" }}>
+          <p className="pr-eyebrow light" style={{ textAlign: 'center' }}>
+            Ready to Order?
+          </p>
+          <h2 className="pr-h2 light" style={{ textAlign: 'center' }}>
             Get a <em>Free Quote</em> Today
           </h2>
           <p className="pr-cta-sub">
-            Contact us for pricing, custom specifications, government procurement,
-            or installation enquiries.
+            Contact us for pricing, custom specifications, government
+            procurement, or installation enquiries.
           </p>
           <div className="pr-cta-btns">
-            <button className="pr-btn-primary" onClick={() => navigate("/getquote")}>
+            <button
+              className="pr-btn-primary"
+              onClick={() => navigate('/getquote')}
+            >
               Get a Free Quote
             </button>
-            <button className="pr-btn-ghost" onClick={() => navigate("/contact")}>
+            <button
+              className="pr-btn-ghost"
+              onClick={() => navigate('/contact')}
+            >
               Contact Us
             </button>
           </div>
         </div>
       </section>
-
     </div>
   );
 }
