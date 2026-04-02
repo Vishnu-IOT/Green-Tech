@@ -1,0 +1,458 @@
+/* =====================================================================
+   GreenTech — Navbar.css
+   Scroll-shrink · Sliding pill · Animated mobile drawer
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ── Variables ────────────────────────────────────────────────────── */
+:root {
+  --gv-deep: #0b2e20;
+  --gv-dark: #0f3d2e;
+  --gv-mid: #1b5e20;
+  --gv-accent: #43a047;
+  --gv-soft: #c8e6c9;
+  --gv-white: #ffffff;
+  --gv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --gv-nav-h: 85px;
+  --gv-nav-h-sm: 58px;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   NAV BAR
+   ════════════════════════════════════════════════════════════════════ */
+.gv-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9000;
+  width: 100%;
+  height: var(--gv-nav-h);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 56px;
+
+  background: white;
+  border-bottom: 1px solid rgba(67, 160, 71, 0.18);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+
+  font-family: 'Montserrat', sans-serif;
+  transition: height 0.35s var(--gv-ease), padding 0.35s var(--gv-ease),
+    background 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Shrink when scrolled */
+.gv-nav--scrolled {
+  height: var(--gv-nav-h);
+  padding: 0 56px;
+  background: #c3ffc7;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Logo ─────────────────────────────────────────────────────────── */
+.gv-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.gv-logo-icon {
+  font-size: 26px;
+  line-height: 1;
+  transition: transform 0.5s var(--gv-ease);
+  filter: drop-shadow(0 0 8px rgba(67, 160, 71, 0.5));
+}
+
+.gv-logo:hover .gv-logo-icon {
+  transform: rotate(180deg) scale(1.15);
+}
+
+.gv-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.gv-logo-text img {
+  height: 70px;
+}
+
+.gv-logo-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gv-white);
+  letter-spacing: 0.01em;
+  transition: color 0.3s;
+}
+
+.gv-logo:hover .gv-logo-name {
+  color: var(--gv-soft);
+}
+
+.gv-logo-sub {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba(200, 230, 201, 0.55);
+  text-transform: uppercase;
+}
+
+/* ── Desktop links ────────────────────────────────────────────────── */
+.gv-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /* for pill */
+  flex: 1;
+  justify-content: center;
+}
+
+/* Sliding pill behind active link */
+.gv-pill {
+  position: absolute;
+  height: 32px;
+  background: rgba(67, 160, 71, 0.18);
+  border: 1px solid rgba(67, 160, 71, 0.35);
+  border-radius: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: left 0.4s var(--gv-ease), width 0.4s var(--gv-ease);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gv-link {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gv-dark);
+  text-decoration: none;
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.gv-link:hover {
+  color: var(--gv-dark);
+}
+
+/* active: pill already shows, just make text bright */
+.gv-link.active-link {
+  background-color: var(--gv-dark);
+  color: #fff;
+}
+
+/* underline sweep on hover (non-active) */
+.gv-link:not(.active-link)::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background: var(--gv-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--gv-ease);
+}
+
+.gv-link:not(.active-link):hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Desktop CTA button ───────────────────────────────────────────── */
+.gv-cta {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 9px 22px;
+  background: var(--gv-accent);
+  color: var(--gv-white);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 24px;
+  border: 1.5px solid transparent;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  white-space: nowrap;
+}
+
+.gv-cta:hover {
+  background: #fff;
+  color: darkgreen;
+  /* transform: translateY(-2px); */
+  border: 2px solid darkgreen;
+  /* box-shadow: 0 8px 24px darkgreen; */
+}
+
+/* .gv-cta--active {
+  background: transparent;
+  border-color: var(--gv-accent);
+  color: var(--gv-soft);
+} */
+
+/* ── Hamburger ────────────────────────────────────────────────────── */
+.gv-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.gv-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+  transition: transform 0.35s var(--gv-ease), opacity 0.25s ease, width 0.3s ease;
+  transform-origin: center;
+}
+
+.gv-burger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.gv-burger--open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.gv-burger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   MOBILE OVERLAY
+   ════════════════════════════════════════════════════════════════════ */
+.gv-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 8998;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+  pointer-events: none;
+}
+
+.gv-overlay--open {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  pointer-events: all;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   MOBILE DRAWER  (slides in from right)
+   ════════════════════════════════════════════════════════════════════ */
+.gv-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 8999;
+  width: min(340px, 85vw);
+  height: 100dvh;
+  background: linear-gradient(160deg, #091c12 0%, #0f3d2e 100%);
+  border-left: 1px solid rgba(67, 160, 71, 0.2);
+  box-shadow: -8px 0 48px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  transform: translateX(100%);
+  transition: transform 0.45s var(--gv-ease);
+}
+
+.gv-drawer--open {
+  transform: translateX(0);
+}
+
+/* Drawer header */
+.gv-drawer-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid rgba(67, 160, 71, 0.15);
+}
+
+.gv-drawer-header .gv-logo-icon {
+  font-size: 30px;
+}
+
+/* Drawer link list */
+.gv-drawer-links {
+  list-style: none;
+  margin: 0;
+  padding: 12px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.gv-drawer-links li {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.4s ease, transform 0.4s var(--gv-ease);
+  /* stagger via CSS variable set in JSX */
+  transition-delay: calc(var(--di) * 0.06s);
+}
+
+.gv-drawer--open .gv-drawer-links li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.gv-drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.25s, background 0.25s, border-color 0.25s, padding-left 0.3s var(--gv-ease);
+}
+
+.gv-drawer-link:hover {
+  color: #fff;
+  background: rgba(67, 160, 71, 0.1);
+  padding-left: 34px;
+  border-left-color: var(--gv-accent);
+}
+
+.gv-drawer-link.active-link {
+  color: #a5d6a7;
+  background: rgba(67, 160, 71, 0.13);
+  border-left-color: var(--gv-accent);
+  font-weight: 600;
+}
+
+.gv-drawer-link-num {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(67, 160, 71, 0.55);
+  min-width: 22px;
+  transition: color 0.25s;
+}
+
+.gv-drawer-link:hover .gv-drawer-link-num,
+.gv-drawer-link.active-link .gv-drawer-link-num {
+  color: var(--gv-accent);
+}
+
+.gv-drawer-arrow {
+  margin-left: auto;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s var(--gv-ease), color 0.25s;
+}
+
+.gv-drawer-link:hover .gv-drawer-arrow {
+  transform: translateX(5px);
+  color: var(--gv-accent);
+}
+
+/* Drawer footer */
+.gv-drawer-footer {
+  padding: 20px 28px 32px;
+  border-top: 1px solid rgba(67, 160, 71, 0.12);
+}
+
+.gv-drawer-footer p {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(200, 230, 201, 0.3);
+  margin: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .gv-nav {
+    padding: 0 36px;
+  }
+
+  .gv-nav--scrolled {
+    padding: 0 36px;
+  }
+
+  .gv-link {
+    padding: 6px 11px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  /* Hide desktop links + CTA, show burger */
+  .gv-links,
+  .gv-cta {
+    display: none;
+  }
+
+  .gv-burger {
+    display: flex;
+  }
+
+  .gv-overlay {
+    display: block;
+  }
+
+  .gv-nav {
+    padding: 0 24px;
+  }
+
+  .gv-nav--scrolled {
+    padding: 0 24px;
+  }
+
+  .gv-burger span {
+    background: darkgreen;
+    border-radius: 2px;
+    transition: transform 0.35s var(--gv-ease), opacity 0.25s ease, width 0.3s ease;
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .gv-nav {
+    padding: 0 18px;
+  }
+
+  .gv-nav--scrolled {
+    padding: 0 18px;
+  }
+
+  .gv-logo-name {
+    font-size: 15px;
+  }
+}

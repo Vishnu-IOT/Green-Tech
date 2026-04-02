@@ -1,0 +1,377 @@
+/* =====================================================================
+   GreenTech — Hero.css
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+.hero-root {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 80px 8% 80px;
+  overflow: hidden;
+  background: #06160e;
+}
+
+/* ── Background ── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80");
+  background-size: cover;
+  background-position: center 30%;
+  transform: scale(1.08);
+  transition: transform 9s ease;
+  filter: brightness(0.38) saturate(0.7);
+}
+
+/* ── Overlays ── */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg,
+      rgba(6, 22, 14, 0.35) 0%,
+      rgba(11, 46, 32, 0.55) 45%,
+      rgba(6, 22, 14, 0.92) 100%);
+  pointer-events: none;
+}
+
+/* ── Ambient orbs ── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.hero-orb1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(27, 94, 32, 0.28) 0%, transparent 70%);
+  top: -180px;
+  right: -100px;
+  animation: hv-float 14s ease-in-out infinite alternate;
+}
+
+.hero-orb2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(67, 160, 71, 0.18) 0%, transparent 70%);
+  bottom: -80px;
+  left: 10%;
+  animation: hv-float 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes hv-float {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(20px, 28px) scale(1.06);
+  }
+}
+
+/* ── Content ── */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   CERTIFICATION BADGES  (replaces eyebrow text)
+   ════════════════════════════════════════════════════════════════════ */
+.hero-certs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  animation: hv-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.hero-cert-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(67, 160, 71, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+}
+
+.hero-cert-pill img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* small vertical divider between the two badges */
+.hero-cert-divider {
+  width: 1px;
+  height: 52px;
+  background: rgba(67, 160, 71, 0.3);
+  flex-shrink: 0;
+}
+
+/* ── Title ── */
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(52px, 9vw, 110px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  animation: hv-rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero-title-cycle {
+  display: block;
+  position: relative;
+  height: 1.1em;
+  overflow: hidden;
+}
+
+.hero-word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-style: italic;
+  color: #81c784;
+  opacity: 0;
+  transform: translateY(60px);
+  animation: hv-word-cycle 9s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: calc(var(--wi) * 3s);
+}
+
+@keyframes hv-word-cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+
+  8% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  28% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  36% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+}
+
+/* ── Sub ── */
+.hero-sub {
+  font-size: clamp(14px, 1.4vw, 18px);
+  color: rgba(255, 255, 255, 0.58);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 40px;
+  animation: hv-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+/* ── CTA buttons ── */
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 44px;
+  animation: hv-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+}
+
+.hero-btn-primary {
+  background: #43a047;
+  color: #fff;
+  border: none;
+  padding: 15px 36px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.hero-btn-primary:hover {
+  background: #2e7d32;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(67, 160, 71, 0.45);
+}
+
+.hero-btn-ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 14px 36px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hero-btn-ghost:hover {
+  border-color: #81c784;
+  color: #81c784;
+}
+
+/* ── Trust pills ── */
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  animation: hv-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+}
+
+.hero-trust-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(67, 160, 71, 0.3);
+  color: rgba(200, 230, 201, 0.75);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Scroll cue ── */
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  right: 8%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, rgba(67, 160, 71, 0.7), transparent);
+  animation: hv-pulse 2s ease infinite;
+}
+
+@keyframes hv-pulse {
+
+  0%,
+  100% {
+    opacity: 0.4
+  }
+
+  50% {
+    opacity: 1
+  }
+}
+
+/* ── Keyframe ── */
+@keyframes hv-rise {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-root {
+    padding: 0 6% 60px;
+    min-height: 90svh;
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 11vw, 72px);
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  .hero-cert-pill {
+    padding: 8px 16px;
+    height: 46px;
+  }
+
+  .hero-cert-pill img {
+    height: 24px;
+  }
+
+  .hero-cert-divider {
+    height: 46px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-root {
+    padding: 0 6% 50px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 12vw, 58px);
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .hero-btn-primary,
+  .hero-btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-trust {
+    gap: 8px;
+  }
+
+  .hero-trust-pill {
+    font-size: 11px;
+  }
+
+  .hero-certs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hero-cert-divider {
+    display: none;
+  }
+
+  .hero-cert-pill {
+    border-radius: 4px;
+  }
+}

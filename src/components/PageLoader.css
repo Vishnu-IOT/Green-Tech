@@ -1,0 +1,427 @@
+/* =====================================================================
+   GreenTech — Full-Screen Page Loader
+   Deep forest green · Industrial eco aesthetic
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600&display=swap');
+
+/* ── Root overlay ─────────────────────────────────────────────────── */
+.gvl-root {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #06160e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.gvl-exit {
+    animation: gvl-exit 0.7s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes gvl-exit {
+    0% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+
+    100% {
+        clip-path: inset(0 0 100% 0);
+        opacity: 0.8;
+    }
+}
+
+/* ── Grain ────────────────────────────────────────────────────────── */
+.gvl-grain {
+    position: absolute;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.045;
+    pointer-events: none;
+    animation: gvl-grain-move 0.9s steps(2) infinite;
+}
+
+@keyframes gvl-grain-move {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-2%, 1%);
+    }
+
+    50% {
+        transform: translate(1%, -2%);
+    }
+
+    75% {
+        transform: translate(-1%, 2%);
+    }
+
+    100% {
+        transform: translate(2%, -1%);
+    }
+}
+
+/* ── Ambient orbs ─────────────────────────────────────────────────── */
+.gvl-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    filter: blur(80px);
+}
+
+.gvl-visible .gvl-orb {
+    animation: gvl-orb-in 1.2s ease 0.3s forwards;
+}
+
+.gvl-orb1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(27, 94, 32, 0.35) 0%, transparent 70%);
+    top: -120px;
+    left: -120px;
+}
+
+.gvl-orb2 {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(46, 125, 50, 0.2) 0%, transparent 70%);
+    bottom: -80px;
+    right: -80px;
+    animation-delay: 0.5s !important;
+}
+
+@keyframes gvl-orb-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ── Corner brackets ─────────────────────────────────────────────── */
+.gvl-corner {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-color: rgba(67, 160, 71, 0.4);
+    border-style: solid;
+    opacity: 0;
+}
+
+.gvl-visible .gvl-corner {
+    animation: gvl-corner-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.gvl-exit .gvl-corner {
+    animation: gvl-fade-out 0.25s ease forwards;
+}
+
+.gvl-tl {
+    top: 44px;
+    left: 48px;
+    border-width: 1px 0 0 1px;
+}
+
+.gvl-tr {
+    top: 44px;
+    right: 48px;
+    border-width: 1px 1px 0 0;
+}
+
+.gvl-bl {
+    bottom: 44px;
+    left: 48px;
+    border-width: 0 0 1px 1px;
+}
+
+.gvl-br {
+    bottom: 44px;
+    right: 48px;
+    border-width: 0 1px 1px 0;
+}
+
+@keyframes gvl-corner-in {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gvl-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+/* ── Center content ──────────────────────────────────────────────── */
+.gvl-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+    gap: 0;
+}
+
+/* ── Recycling icon ──────────────────────────────────────────────── */
+.gvl-icon {
+    font-size: clamp(28px, 4vw, 44px);
+    color: #43a047;
+    line-height: 1;
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: gvl-icon-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    filter: drop-shadow(0 0 14px rgba(67, 160, 71, 0.6));
+}
+
+@keyframes gvl-icon-in {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+/* ── Word rows ───────────────────────────────────────────────────── */
+.gvl-word {
+    display: flex;
+    line-height: 1;
+    overflow: hidden;
+}
+
+/* GREEN — solid white, tall condensed */
+.gvl-green {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(72px, 16vw, 168px);
+    color: #ffffff;
+    letter-spacing: 0.12em;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(48px);
+    animation: gvl-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(0.18s + var(--i) * 0.065s);
+}
+
+/* VERSE — outlined green, same scale */
+.gvl-verse {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(72px, 16vw, 168px);
+    color: transparent;
+    -webkit-text-stroke: 1.5px #43a047;
+    letter-spacing: 0.12em;
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    transform: translateY(48px);
+    animation: gvl-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(0.18s + var(--i) * 0.065s);
+}
+
+/* Green fill shimmer on VERSE */
+.gvl-verse::after {
+    content: attr(data-ch);
+    position: absolute;
+    inset: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            #43a047 35%,
+            #a5d6a7 50%,
+            #43a047 65%,
+            transparent 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: gvl-shimmer 1.6s ease 1s forwards;
+}
+
+@keyframes gvl-shimmer {
+    0% {
+        opacity: 1;
+        background-position: 250% 0;
+    }
+
+    100% {
+        opacity: 1;
+        background-position: -250% 0;
+    }
+}
+
+@keyframes gvl-rise {
+    from {
+        opacity: 0;
+        transform: translateY(48px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Divider ─────────────────────────────────────────────────────── */
+.gvl-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0 4px;
+    opacity: 0;
+    animation: gvl-fade-up 0.5s ease 0.6s forwards;
+}
+
+.gvl-dline {
+    display: block;
+    height: 1px;
+    width: 0;
+    background: linear-gradient(90deg, transparent, rgba(67, 160, 71, 0.65), transparent);
+    animation: gvl-line-grow 0.7s ease 0.75s forwards;
+}
+
+.gvl-dl {
+    transform-origin: right;
+}
+
+.gvl-dr {
+    transform-origin: left;
+}
+
+@keyframes gvl-line-grow {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 70px;
+    }
+}
+
+.gvl-dsym {
+    font-size: 9px;
+    color: rgba(67, 160, 71, 0.75);
+    line-height: 1;
+}
+
+/* ── Tagline ─────────────────────────────────────────────────────── */
+.gvl-tagline {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(10px, 1.1vw, 13px);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(67, 160, 71, 0.55);
+    margin: 18px 0 0;
+    opacity: 0;
+    animation: gvl-fade-up 0.6s ease 1.1s forwards;
+}
+
+@keyframes gvl-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Progress bar ────────────────────────────────────────────────── */
+.gvl-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.gvl-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #0b2e20, #2e7d32, #a5d6a7, #2e7d32, #0b2e20);
+    background-size: 300% 100%;
+    animation:
+        gvl-bar-grow 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+        gvl-bar-shimmer 1.6s linear 0.3s infinite;
+}
+
+@keyframes gvl-bar-grow {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes gvl-bar-shimmer {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: -200% 0;
+    }
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+
+    .gvl-tl,
+    .gvl-tr {
+        top: 24px;
+    }
+
+    .gvl-bl,
+    .gvl-br {
+        bottom: 24px;
+    }
+
+    .gvl-tl,
+    .gvl-bl {
+        left: 24px;
+    }
+
+    .gvl-tr,
+    .gvl-br {
+        right: 24px;
+    }
+
+    .gvl-corner {
+        width: 22px;
+        height: 22px;
+    }
+
+    .gvl-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+}

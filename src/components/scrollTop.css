@@ -1,0 +1,148 @@
+/* =====================================================================
+   KING & QUEEN — scrollTop.css
+   Luxury editorial scroll-to-top button with progress ring
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap');
+
+:root {
+    --stt-gold: #1b5e20;
+    --stt-gold-dark: #145018;
+    --stt-black: #fff;
+    --stt-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   BUTTON ROOT
+   ════════════════════════════════════════════════════════════════════════ */
+.stt-root {
+    /* Position */
+    position: fixed;
+    bottom: 36px;
+    right: 32px;
+    z-index: 9960;
+
+    /* Size */
+    width: 52px;
+    height: 52px;
+
+    /* Appearance */
+    background: var(--stt-black);
+    border: none;
+    border-radius: 50%;
+    /* Square — editorial feel */
+    cursor: pointer;
+
+    /* Layout — stack SVG ring + arrow icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Hidden by default */
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition:
+        opacity 0.4s var(--stt-ease),
+        transform 0.4s var(--stt-ease),
+        background 0.3s ease;
+
+    /* Subtle shadow */
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* Visible state */
+.stt-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Hover */
+.stt-root:hover {
+    background: var(--stt-gold);
+}
+
+.stt-root:hover .stt-ring-track {
+    stroke: rgba(0, 0, 0, 0.15);
+}
+
+.stt-root:hover .stt-ring-progress {
+    stroke: var(--stt-black);
+}
+
+.stt-root:hover .stt-arrow {
+    border-color: var(--stt-black);
+    transform: translate(-50%, -38%) rotate(-45deg);
+}
+
+/* Active press */
+.stt-root:active {
+    transform: scale(0.94);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   SVG PROGRESS RING
+   ════════════════════════════════════════════════════════════════════════ */
+.stt-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* Start from top (12 o'clock) */
+    transform: rotate(-90deg);
+    pointer-events: none;
+}
+
+.stt-ring-track {
+    stroke: rgba(201, 169, 110, 0.2);
+    transition: stroke 0.3s ease;
+}
+
+.stt-ring-progress {
+    stroke: var(--stt-gold);
+    transition:
+        stroke-dashoffset 0.15s linear,
+        stroke 0.3s ease;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   ARROW ICON (pure CSS chevron — no icon library needed)
+   ════════════════════════════════════════════════════════════════════════ */
+.stt-arrow {
+    position: absolute;
+    left: 49%;
+    top: 53%;
+
+    /* Chevron shape via borders */
+    width: 10px;
+    height: 10px;
+    border-top: 1.5px solid var(--stt-gold);
+    border-right: 1.5px solid var(--stt-gold);
+    border-bottom: none;
+    border-left: none;
+
+    transform: translate(-50%, -42%) rotate(-45deg);
+    transition:
+        border-color 0.3s ease,
+        transform 0.35s var(--stt-ease);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   MOBILE
+   ════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+    .stt-root {
+        border-radius: 50%;
+        bottom: 15px;
+        height: 44px;
+        right: 15px;
+        width: 44px;
+    }
+
+    .stt-arrow {
+        width: 9px;
+        height: 9px;
+        left: 50%;
+    }
+}

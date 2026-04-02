@@ -1,0 +1,382 @@
+/* =====================================================================
+   GreenTech — Footer.css
+   Matches brand system: Fraunces + Outfit + --gv-* variables
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ─── Variables ─────────────────────────────────────────────────── */
+:root {
+    --ft-deep: #0b2e20;
+    --ft-dark: #0f3d2e;
+    --ft-mid: #1b5e20;
+    --ft-main: #2e7d32;
+    --ft-accent: #43a047;
+    --ft-soft: #c8e6c9;
+    --ft-muted: rgba(200, 230, 201, 0.55);
+    --ft-border: rgba(67, 160, 71, 0.18);
+    --ft-font: 'Outfit', sans-serif;
+    --ft-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Root ────────────────────────────────────────────────────────── */
+.ft-root {
+    background: linear-gradient(160deg, #081e12 0%, var(--ft-dark) 50%, #0d3520 100%);
+    color: var(--ft-soft);
+    font-family: var(--ft-font);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Background radial glow ─────────────────────────────────────── */
+.ft-root::before {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(27, 94, 32, 0.2) 0%, transparent 70%);
+    bottom: -200px;
+    right: -150px;
+    pointer-events: none;
+}
+
+/* ── Top accent line ─────────────────────────────────────────────── */
+.ft-accent-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(67, 160, 71, 0.4) 20%,
+            rgba(129, 200, 132, 0.8) 50%,
+            rgba(67, 160, 71, 0.4) 80%,
+            transparent 100%);
+}
+
+/* ── Main grid ───────────────────────────────────────────────────── */
+.ft-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 7% 56px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Brand column ────────────────────────────────────────────────── */
+.ft-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.ft-logo-icon {
+    font-size: 26px;
+    color: #81c784;
+    filter: drop-shadow(0 0 8px rgba(129, 200, 132, 0.5));
+    line-height: 1;
+}
+
+.ft-logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.ft-logo-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.01em;
+}
+
+.ft-logo-sub {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ft-muted);
+    margin-top: 3px;
+}
+
+.ft-brand-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--ft-muted);
+    font-weight: 300;
+    margin-bottom: 24px;
+    max-width: 340px;
+}
+
+/* Social buttons */
+.ft-socials {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.ft-social-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--ft-border);
+    border-radius: 8px;
+    color: var(--ft-soft);
+    transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ft-ease), color 0.3s;
+    text-decoration: none;
+}
+
+.ft-social-btn:hover {
+    background: var(--ft-accent);
+    border-color: var(--ft-accent);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.ft-social-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.5;
+}
+
+/* Cert badge */
+.ft-cert {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(67, 160, 71, 0.12);
+    border: 1px solid rgba(67, 160, 71, 0.3);
+    color: #a5d6a7;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.ft-cert-dot {
+    color: var(--ft-accent);
+    font-size: 9px;
+}
+
+/* ── Column headers ──────────────────────────────────────────────── */
+.ft-col-title {
+    font-family: var(--ft-font);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ft-border);
+    position: relative;
+}
+
+/* gold underline accent */
+.ft-col-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 28px;
+    height: 2px;
+    background: var(--ft-accent);
+    border-radius: 1px;
+}
+
+/* ── Link list ───────────────────────────────────────────────────── */
+.ft-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ft-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ft-muted);
+    text-decoration: none;
+    padding: 6px 0;
+    transition: color 0.25s, padding-left 0.25s var(--ft-ease);
+}
+
+.ft-link:hover {
+    color: #fff;
+    padding-left: 6px;
+}
+
+.ft-link-arrow {
+    font-size: 11px;
+    color: var(--ft-accent);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.25s, transform 0.25s var(--ft-ease);
+    flex-shrink: 0;
+}
+
+.ft-link:hover .ft-link-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── Contact list ────────────────────────────────────────────────── */
+.ft-contact-list {
+    gap: 0 !important;
+}
+
+.ft-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(67, 160, 71, 0.08);
+    font-size: 13px;
+    color: var(--ft-muted);
+    font-weight: 300;
+}
+
+.ft-contact-item:last-child {
+    border-bottom: none;
+}
+
+.ft-contact-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.ft-link-plain {
+    color: var(--ft-muted);
+    text-decoration: none;
+    transition: color 0.25s;
+}
+
+.ft-link-plain:hover {
+    color: #fff;
+}
+
+/* Quote CTA */
+.ft-quote-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--ft-accent);
+    color: #fff;
+    font-family: var(--ft-font);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.ft-quote-btn:hover {
+    background: var(--ft-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(27, 94, 32, 0.4);
+}
+
+/* ── Bottom bar ──────────────────────────────────────────────────── */
+.ft-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 7%;
+    border-top: 1px solid var(--ft-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.ft-copy {
+    font-size: 12px;
+    color: rgba(200, 230, 201, 0.4);
+    font-weight: 300;
+    margin: 0;
+}
+
+.ft-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ft-bottom-link {
+    font-size: 12px;
+    color: rgba(200, 230, 201, 0.45);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.25s;
+}
+
+.ft-bottom-link:hover {
+    color: rgba(200, 230, 201, 0.9);
+}
+
+.ft-bottom-sep {
+    color: rgba(67, 160, 71, 0.35);
+    font-size: 11px;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+    .ft-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .ft-brand {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .ft-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 48px 6% 40px;
+    }
+
+    .ft-brand {
+        grid-column: span 1;
+    }
+
+    .ft-brand-desc {
+        max-width: 100%;
+    }
+
+    .ft-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding: 18px 6%;
+        gap: 8px;
+    }
+
+    .ft-bottom-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
