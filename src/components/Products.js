@@ -15,7 +15,7 @@ import four from "../assests/4.jpeg";
 import five from "../assests/great.jpeg";
 import six from "../assests/6.jpeg";
 import seven from "../assests/7.jpeg";
-import eight from "../assests/8.jpeg";
+import eight from "../assests/great.jpeg";
 import nine from "../assests/9.jpeg";
 import ten from "../assests/10.jpeg";
 import el from "../assests/great1.jpeg";
