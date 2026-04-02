@@ -7,8 +7,8 @@ import incinerator from "../assests/orginal4.jpg";
 import vending from "../assests/vending.jpg";
 import baler from "../assests/hydraulic.jpg";
 import blow from "../assests/5.jpeg";
-import lpggg from "../assests/great1.jpeg";
-import mobilec from "../assests/133.jpeg";
+import lpggg from "../assests/133.jpeg";
+import mobilec from "../assests/134.jpeg";
 import two from "../assests/2.jpeg";
 
 function ProductDetail() {
@@ -44,7 +44,7 @@ function ProductDetail() {
     },
 
     lpg: {
-      title: "LPG CRematorium",
+      title: "LPG Crematorium",
       img: lpggg,
       desc: "Eco-friendly LPG crematorium for clean, efficient, and safe cremation.",
       text: "LPG cremation is an eco-friendly method of body disposal that serves as a modern alternative to traditional burial. It reduces the body to ash by exposing it to high-temperature flames within a controlled furnace. Unlike the common misconception of simply burning the body, LPG cremation is a precise, technical process carried out with full care and respect, ensuring efficiency, hygiene, and minimal environmental impact.",
