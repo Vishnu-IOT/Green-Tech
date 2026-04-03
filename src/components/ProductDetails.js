@@ -7,7 +7,7 @@ import incinerator from "../assests/orginal4.jpg";
 import vending from "../assests/vending.jpg";
 import baler from "../assests/hydraulic.jpg";
 import blow from "../assests/5.jpeg";
-import lpggg from "../assests/133.jpeg";
+import lpggg from "../assests/133.png";
 import mobilec from "../assests/134.jpeg";
 import two from "../assests/2.jpeg";
 
