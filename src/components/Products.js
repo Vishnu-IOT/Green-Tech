@@ -8,7 +8,7 @@ import baler from '../assests/4.png';
 import lpgg from '../assests/132.jpeg';
 import blow from '../assests/woodblower.jpg';
 import mobilee from '../assests/135.jpeg';
-import napkine from '../assests/131.jpeg';
+// import napkine from '../assests/131.jpeg';
 import creme from '../assests/133.png';
 import one from '../assests/1.jpeg';
 import one2 from '../assests/1.png';
@@ -59,7 +59,7 @@ function HeroCarousel() {
     blow,
     vending,
     napkin,
-    napkine,
+    // napkine,
     lpgg,
     creme,
     mobilee,
